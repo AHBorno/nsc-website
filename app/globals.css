@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, system-ui, serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-accent: #38bdf8;
+  --color-brand-bg: #05070A;
+  --color-brand-border: #1e293b;
+}
+
+@layer base {
+  body {
+    @apply bg-[--color-brand-bg] text-slate-200 selection:bg-sky-500/30;
+  }
+}
+
+@layer utilities {
+  .bg-dots {
+    background-image: radial-gradient(#38bdf8 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .glass {
+    @apply bg-[#05070A]/80 backdrop-blur-md border border-slate-800/50;
+  }
+  .text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-400;
+  }
+}
