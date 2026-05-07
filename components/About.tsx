@@ -5,7 +5,7 @@ import { History, Target, Zap } from 'lucide-react';
 
 const values = [
   {
-    title: 'Established 2017',
+    title: 'Established in 2017',
     description: 'A legacy of scientific excellence at Noubahini College Dhaka for over 9 years.',
     icon: History,
   },
