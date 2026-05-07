@@ -22,7 +22,7 @@ export default function Hero() {
       {/* Live Event Popup */}
       <a
         href="/events"
-        className="absolute top-32 right-8 hidden lg:block z-20"
+        className="absolute top-20 right-3 md:right-8 z-20 scale-75 md:scale-100 origin-top-right"
       >
         <div className="glass border border-sky-500/20 rounded-[2rem] px-6 py-5 hover:border-sky-500/50 transition-all duration-300 hover:scale-105 cursor-pointer max-w-xs backdrop-blur-xl">
 
