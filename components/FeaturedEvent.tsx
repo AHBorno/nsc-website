@@ -36,10 +36,16 @@ export default function FeaturedEvent() {
                   <Calendar className="text-sky-500 w-5 h-5" />
                   <span className="font-mono text-sm">May 16-17, 2026</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="text-sky-500 w-5 h-5" />
-                  <span className="font-mono text-sm">Noubahini College Dhaka</span>
-                </div>
+                <a
+                    href="https://maps.app.goo.gl/gMsodLn29fXDbhoV7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-sky-400 transition-colors"
+                   >
+                    <MapPin className="w-4 h-4 text-sky-500" />
+
+                    <span>Noubahini College Dhaka</span>
+                </a>
               </div>
               <p className="text-lg text-slate-400 leading-relaxed mb-0">
                 Join the grandest celebration of science and technology in the region. Competitions, workshops, and much more. Experience two days of pure scientific madness.
