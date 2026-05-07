@@ -42,47 +42,52 @@ export default function EventsGallery() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-sky-500/20 glass h-[300px] md:h-[650px]">
+        <a href="/events#events-gallery">
 
-          <AnimatePresence mode="wait">
+          <div className="relative overflow-hidden rounded-[2rem] border border-sky-500/20 glass h-[300px] md:h-[650px] cursor-pointer hover:scale-[1.01] transition-all duration-500">
 
-            <motion.div
-              key={current}
-              initial={{ x: 120, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -120, opacity: 0 }}
-              transition={{ duration: 0.7, ease: 'easeInOut' }}
-              className="absolute inset-0"
-            >
+            <AnimatePresence mode="wait">
 
-              <Image
-                src={images[current]}
-                alt="Event Gallery"
-                fill
-                className="object-cover"
-                priority
-              />
+              <motion.div
+                key={current}
+                initial={{ x: 120, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -120, opacity: 0 }}
+                transition={{ duration: 0.7, ease: 'easeInOut' }}
+                className="absolute inset-0"
+              >
 
-            </motion.div>
+                <Image
+                  src={images[current]}
+                  alt="Event Gallery"
+                  fill
+                  className="object-cover"
+                  priority
+                />
 
-          </AnimatePresence>
+              </motion.div>
 
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+            </AnimatePresence>
 
-            {images.map((_, index) => (
-              <div
-                key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  current === index
-                    ? 'w-10 bg-sky-500'
-                    : 'w-2 bg-white/40'
-                }`}
-              />
-            ))}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+
+              {images.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    current === index
+                      ? 'w-10 bg-sky-500'
+                      : 'w-2 bg-white/40'
+                  }`}
+                />
+              ))}
+
+            </div>
 
           </div>
 
-        </div>
+        </a>
+
       </div>
     </section>
   );

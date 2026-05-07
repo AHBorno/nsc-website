@@ -61,7 +61,9 @@ export default function EventsPage() {
       </section>
 
       {/* Events Gallery */}
-      <EventsGallery />
+      <div id="events-gallery">
+        <EventsGallery />
+      </div>
 
       <Footer />
 
