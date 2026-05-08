@@ -5,6 +5,7 @@ import DepartmentsGrid from '@/components/DepartmentsGrid';
 import FeaturedEvent from '@/components/FeaturedEvent';
 import Footer from '@/components/Footer';
 import EventsGallery from '@/components/EventsGallery';
+import FloatingFacebook from '@/components/FloatingFacebook';
 import Image from 'next/image';
 
 export default function Home() {
@@ -108,6 +109,8 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      <FloatingFacebook />
 
     </main>
   );
