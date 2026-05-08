@@ -39,7 +39,7 @@ export default function Hero() {
           </p>
 
           <h3 className="text-sky-400 font-semibold text-lg leading-snug">
-            National Science Carnival 2026
+            National Science Fair & Co-curricular Competition-2026
           </h3>
         </div>
       </a>
