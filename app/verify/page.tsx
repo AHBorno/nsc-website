@@ -18,10 +18,12 @@ export default function VerifyPage() {
       header: true,
       complete: (results) => {
 
+        console.log(results.data);
+
         const found = results.data.find(
-          (item: any) =>
-            item.Code?.trim().toUpperCase() ===
-            code.trim().toUpperCase()
+         (item: any) =>
+            String(item.Code).trim().toUpperCase() ===
+            String(code).trim().toUpperCase()
         );
 
         setResult(found || null);
