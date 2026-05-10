@@ -20,7 +20,7 @@ export default function VerifyPage() {
 
         const found = results.data.find(
           (item: any) =>
-            item.code?.trim().toUpperCase() ===
+            item.Code?.trim().toUpperCase() ===
             code.trim().toUpperCase()
         );
 
@@ -75,22 +75,37 @@ export default function VerifyPage() {
 
               <p>
                 <span className="text-slate-400">Name:</span>{' '}
-                {result.name}
+                {result.Name}
               </p>
 
               <p>
-                <span className="text-slate-400">Event:</span>{' '}
-                {result.event}
+                <span className="text-slate-400">Institution:</span>{' '}
+                {result.Institution}
               </p>
 
               <p>
-                <span className="text-slate-400">Achievement:</span>{' '}
-                {result.achievement}
+                <span className="text-slate-400">Segment:</span>{' '}
+                {result.Segment}
+              </p>
+
+              <p>
+                <span className="text-slate-400">Position:</span>{' '}
+                {result.Position}
+              </p>
+
+              <p>
+                <span className="text-slate-400">Category:</span>{' '}
+                {result.Category}
+              </p>
+
+              <p>
+                <span className="text-slate-400">Project Title:</span>{' '}
+                {result['Project Title']}
               </p>
 
               <p>
                 <span className="text-slate-400">Certificate ID:</span>{' '}
-                {result.code}
+                {result.Code}
               </p>
 
             </div>
