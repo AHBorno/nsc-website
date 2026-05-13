@@ -11,6 +11,7 @@ const NavLinks = [
   { name: 'About Us', href: '/about' },
   { name: 'Departments', href: '/departments' },
   { name: 'Events', href: '/events' },
+  { name: 'EXAM', href: '/exam' },
   { name: 'Committee', href: '/committee' },
   { name: 'Achievements', href: '/achievements' },
   { name: 'VERIFY', href: '/verify' },
