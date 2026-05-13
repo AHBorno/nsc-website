@@ -17,9 +17,12 @@ export default function ExamPage() {
 
     if (!FORM_LINK) return;
 
+    // Unique exam key based on exam link
+    const examKey = `nsc_exam_attempt_${FORM_LINK}`;
+
     const today = new Date().toDateString();
 
-    const savedDate = localStorage.getItem('nsc_exam_attempt');
+    const savedDate = localStorage.getItem(examKey);
 
     if (savedDate === today) {
       setAlreadyAttempted(true);
@@ -41,7 +44,7 @@ export default function ExamPage() {
         setExamEnded(true);
 
         localStorage.setItem(
-          'nsc_exam_attempt',
+          examKey,
           new Date().toDateString()
         );
       }
@@ -106,7 +109,7 @@ export default function ExamPage() {
           setExamEnded(true);
 
           localStorage.setItem(
-            'nsc_exam_attempt',
+            examKey,
             new Date().toDateString()
           );
 
@@ -184,7 +187,7 @@ export default function ExamPage() {
           </h1>
 
           <p className="text-slate-300 text-xl mb-4">
-            You have already attended today's examination.
+            You have already attended this examination.
           </p>
 
           <p className="text-slate-500">
