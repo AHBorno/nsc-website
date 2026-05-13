@@ -9,13 +9,13 @@ export default function ExamPage() {
   // Leave empty when no exam
   // =========================
 
-  const FORM_LINK = '';
+  const FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSewLDehs1En8_nPdQpyn8NPoPs_tL8Yl6iK8g-z_463VTwBhQ/viewform?embedded=true';
 
   // Example:
   // const FORM_LINK =
-  // 'https://docs.google.com/forms/d/e/1FAIpQLSewLDehs1En8_nPdQpyn8NPoPs_tL8Yl6iK8g-z_463VTwBhQ/viewform?embedded=true';
+  // 'https://docs.google.com/forms/d/e/xxxxxxxx/viewform?embedded=true';
 
-  const EXAM_DURATION = 1 * 60; 
+  const EXAM_DURATION = 60 * 60; // 60 mins
 
   const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
 
