@@ -1,126 +1,133 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Papa from 'papaparse';
 
-export default function ExamPage() {
+export default function VerifyPage() {
 
-  const FORM_LINK =
-    'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
+  const [code, setCode] = useState('');
+  const [result, setResult] = useState<any>(null);
+  const [searched, setSearched] = useState(false);
 
-  const EXAM_DURATION = 0.5 * 60; // 60 mins
+  const verifyCertificate = async () => {
 
-  const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
-  const [examEnded, setExamEnded] = useState(false);
+    const response = await fetch('/certificates.csv');
+    const csvText = await response.text();
 
-  useEffect(() => {
+    Papa.parse(csvText, {
+      header: true,
+      complete: (results) => {
 
-    if (!FORM_LINK) return;
+        const found = results.data.find(
+          (item: any) =>
+            item.Code?.trim().toUpperCase() ===
+            code.trim().toUpperCase()
+        );
 
-    const timer = setInterval(() => {
-
-      setTimeLeft((prev) => {
-
-        if (prev <= 1) {
-
-          clearInterval(timer);
-
-          setExamEnded(true);
-
-          return 0;
-        }
-
-        return prev - 1;
-      });
-
-    }, 1000);
-
-    return () => clearInterval(timer);
-
-  }, [FORM_LINK]);
-
-  // =========================
-  // NO LIVE EXAM
-  // =========================
-
-  if (!FORM_LINK) {
-
-    return (
-      <main className="min-h-screen bg-[#05070A] text-white flex items-center justify-center px-4">
-
-        <div className="glass border border-slate-800 rounded-[2rem] p-12 text-center max-w-xl">
-
-          <h1 className="font-display text-5xl font-black mb-6">
-            NO LIVE
-            <span className="text-gradient"> EXAM</span>
-          </h1>
-
-          <p className="text-slate-400 text-lg">
-            There is currently no live exam available.
-            Please check again later.
-          </p>
-
-        </div>
-
-      </main>
-    );
-  }
-
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
+        setResult(found || null);
+        setSearched(true);
+      },
+    });
+  };
 
   return (
-    <main className="min-h-screen bg-[#05070A] text-white">
+    <main className="min-h-screen bg-[#05070A] text-white flex items-center justify-center px-4 py-24">
 
-      {/* Top Bar */}
-      <div className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+      <div className="w-full max-w-2xl glass rounded-[2rem] p-10 border border-sky-500/20">
 
-        <h1 className="text-2xl font-black">
-          NSC ONLINE EXAM
+        <h1 className="font-display text-5xl font-black mb-4 text-center">
+          CERTIFICATE
+          <span className="text-gradient"> VERIFICATION</span>
         </h1>
 
-        <div className="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-xl font-bold text-lg">
-          {minutes}:{seconds.toString().padStart(2, '0')}
+        <p className="text-slate-400 text-center mb-10">
+          Enter your certificate verification code below.
+        </p>
+
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+
+          <input
+            type="text"
+            placeholder="Enter certificate code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            className="flex-1 bg-slate-900 border border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-sky-500"
+          />
+
+          <button
+            onClick={verifyCertificate}
+            className="px-8 py-4 rounded-2xl bg-sky-500 hover:bg-sky-400 transition-all font-bold text-slate-950"
+          >
+            Verify
+          </button>
+
         </div>
 
-      </div>
+        {searched && result && (
 
-      {/* Exam Container */}
-      <div className="relative w-full h-[calc(100vh-80px)]">
+          <div className="rounded-3xl border border-green-500/30 bg-green-500/10 p-8">
 
-        {/* Google Form */}
-        <iframe
-          src={FORM_LINK}
-          className="w-full h-full"
-        />
+            <h2 className="text-3xl font-black text-green-400 mb-6">
+              VALID CERTIFICATE
+            </h2>
 
-        {/* Exam Over Overlay */}
-        {examEnded && (
+            <div className="space-y-3 text-lg">
 
-            <div className="absolute inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center z-50">
+              <p>
+                <span className="text-slate-400">Name:</span>{' '}
+                {result.Name}
+              </p>
 
-                <div className="glass border border-red-500/30 rounded-[2rem] p-12 text-center max-w-2xl mx-4">
+              <p>
+                <span className="text-slate-400">Institution:</span>{' '}
+                {result.Institution}
+              </p>
 
-                <h1 className="font-display text-6xl md:text-7xl font-black mb-6">
-                 EXAM
-                    <span className="text-red-500"> OVER</span>
-                </h1>
+              <p>
+                <span className="text-slate-400">Segment:</span>{' '}
+                {result.Segment}
+              </p>
 
-                <p className="text-slate-300 text-xl leading-relaxed mb-4">
-                     The examination time has ended.
-                </p>
+              <p>
+                <span className="text-slate-400">Position:</span>{' '}
+                {result.Position}
+              </p>
 
-                <p className="text-slate-500">
-                    Submission access is now blocked.
-                </p>
+              <p>
+                <span className="text-slate-400">Category:</span>{' '}
+                {result.Category}
+              </p>
 
-                </div>
+              <p>
+                <span className="text-slate-400">Project Title:</span>{' '}
+                {result['Project Title']}
+              </p>
+
+              <p>
+                <span className="text-slate-400">Certificate ID:</span>{' '}
+                {result.Code}
+              </p>
 
             </div>
+          </div>
+        )}
 
+        {searched && !result && (
+
+          <div className="rounded-3xl border border-red-500/30 bg-red-500/10 p-8 text-center">
+
+            <h2 className="text-3xl font-black text-red-400 mb-4">
+              INVALID CERTIFICATE
+            </h2>
+
+            <p className="text-slate-300">
+              This certificate code does not exist in our records.
+            </p>
+
+          </div>
         )}
 
       </div>
-
     </main>
   );
 }

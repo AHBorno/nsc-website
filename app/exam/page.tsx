@@ -4,20 +4,13 @@ import { useEffect, useState } from 'react';
 
 export default function ExamPage() {
 
-  // =========================
-  // PASTE GOOGLE FORM LINK HERE
-  // Leave empty when no exam
-  // =========================
+  const FORM_LINK =
+    'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
 
-  const FORM_LINK = 'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
-
-  // Example:
-  // const FORM_LINK =
-  // 'https://docs.google.com/forms/d/e/xxxxxxxx/viewform?embedded=true';
-
-  const EXAM_DURATION = 1 * 60; // 60 mins
+  const EXAM_DURATION = 0.5 * 60; // 60 mins
 
   const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
+  const [examEnded, setExamEnded] = useState(false);
 
   useEffect(() => {
 
@@ -28,9 +21,10 @@ export default function ExamPage() {
       setTimeLeft((prev) => {
 
         if (prev <= 1) {
+
           clearInterval(timer);
 
-          alert('Time is over.');
+          setExamEnded(true);
 
           return 0;
         }
@@ -74,10 +68,6 @@ export default function ExamPage() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
-  // =========================
-  // LIVE EXAM
-  // =========================
-
   return (
     <main className="min-h-screen bg-[#05070A] text-white">
 
@@ -94,13 +84,40 @@ export default function ExamPage() {
 
       </div>
 
-      {/* Embedded Google Form */}
-      <div className="w-full h-[calc(100vh-80px)]">
+      {/* Exam Container */}
+      <div className="relative w-full h-[calc(100vh-80px)]">
 
+        {/* Google Form */}
         <iframe
           src={FORM_LINK}
           className="w-full h-full"
         />
+
+        {/* Exam Over Overlay */}
+        {examEnded && (
+
+            <div className="absolute inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center z-50">
+
+                <div className="glass border border-red-500/30 rounded-[2rem] p-12 text-center max-w-2xl mx-4">
+
+                <h1 className="font-display text-6xl md:text-7xl font-black mb-6">
+                 EXAM
+                    <span className="text-red-500"> OVER</span>
+                </h1>
+
+                <p className="text-slate-300 text-xl leading-relaxed mb-4">
+                     The examination time has ended.
+                </p>
+
+                <p className="text-slate-500">
+                    Submission access is now blocked.
+                </p>
+
+                </div>
+
+            </div>
+
+        )}
 
       </div>
 
