@@ -8,10 +8,7 @@ export default function ExamPage() {
   // EXAM SETTINGS
   // =========================
 
-  const EXAM_NAME =
-    'National Science Olympiad 2026';
-
-  const FORM_LINK =
+  const RAW_FORM_LINK =
     'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
 
   const EXAM_DURATION = 0.5 * 60;
@@ -19,11 +16,58 @@ export default function ExamPage() {
   // =========================
 
   const [started, setStarted] = useState(false);
+  const [examName, setExamName] = useState('Loading Exam...');
   const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
   const [examEnded, setExamEnded] = useState(false);
   const [alreadyAttempted, setAlreadyAttempted] = useState(false);
 
-  const examKey = `nsc_exam_attempt_${FORM_LINK}`;
+  // Dynamic exam key
+  const examKey = `nsc_exam_attempt_${RAW_FORM_LINK}`;
+
+  // Dynamic exam form link with timestamp
+  const FORM_LINK =
+    `${RAW_FORM_LINK}`;
+
+  // =========================
+  // FETCH EXAM TITLE
+  // =========================
+
+  useEffect(() => {
+
+    const fetchTitle = async () => {
+
+      try {
+
+        const response = await fetch(RAW_FORM_LINK);
+
+        const html = await response.text();
+
+        const match = html.match(/<title>(.*?)<\/title>/);
+
+        if (match && match[1]) {
+
+          const cleaned = match[1]
+            .replace(' - Google Forms', '')
+            .trim();
+
+          setExamName(cleaned);
+        }
+
+      } catch {
+
+        setExamName('NSC Online Exam');
+      }
+    };
+
+    if (RAW_FORM_LINK) {
+      fetchTitle();
+    }
+
+  }, []);
+
+  // =========================
+  // MAIN EXAM SYSTEM
+  // =========================
 
   useEffect(() => {
 
@@ -40,12 +84,20 @@ export default function ExamPage() {
       return;
     }
 
+    // Save exam start time
+    localStorage.setItem(
+      'nsc_exam_start',
+      Date.now().toString()
+    );
+
     // =========================
     // ANTI CHEAT SYSTEM
     // =========================
 
+    // Auto fullscreen
     document.documentElement.requestFullscreen?.();
 
+    // Detect tab switching
     const handleVisibility = () => {
 
       if (document.hidden) {
@@ -64,6 +116,7 @@ export default function ExamPage() {
       handleVisibility
     );
 
+    // Disable right click
     const disableRightClick = (e: MouseEvent) => {
       e.preventDefault();
     };
@@ -73,12 +126,15 @@ export default function ExamPage() {
       disableRightClick
     );
 
+    // Disable shortcuts
     const handleKeyDown = (e: KeyboardEvent) => {
 
+      // Prevent F12
       if (e.key === 'F12') {
         e.preventDefault();
       }
 
+      // Prevent Ctrl shortcuts
       if (
         e.ctrlKey &&
         ['c', 'v', 'x', 'u', 's', 'p'].includes(
@@ -88,6 +144,7 @@ export default function ExamPage() {
         e.preventDefault();
       }
 
+      // Prevent Alt+Tab partially
       if (e.altKey && e.key === 'Tab') {
         e.preventDefault();
       }
@@ -151,7 +208,7 @@ export default function ExamPage() {
   // NO LIVE EXAM
   // =========================
 
-  if (!FORM_LINK) {
+  if (!RAW_FORM_LINK) {
 
     return (
       <main className="min-h-screen bg-[#05070A] text-white flex items-center justify-center px-4">
@@ -219,7 +276,7 @@ export default function ExamPage() {
           </p>
 
           <h1 className="font-display text-5xl md:text-6xl font-black mb-8">
-            {EXAM_NAME}
+            {examName}
           </h1>
 
           <div className="space-y-4 text-slate-300 text-lg mb-10">
@@ -265,7 +322,7 @@ export default function ExamPage() {
       <div className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
 
         <h1 className="text-2xl font-black">
-          {EXAM_NAME}
+          {examName}
         </h1>
 
         <div className="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-xl font-bold text-lg">
@@ -277,6 +334,7 @@ export default function ExamPage() {
       {/* Exam Container */}
       <div className="relative w-full h-[calc(100vh-80px)]">
 
+        {/* Google Form */}
         <iframe
           src={FORM_LINK}
           className="w-full h-full"
