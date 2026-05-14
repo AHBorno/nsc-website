@@ -4,21 +4,32 @@ import { useEffect, useState } from 'react';
 
 export default function ExamPage() {
 
+  // =========================
+  // EXAM SETTINGS
+  // =========================
+
+  const EXAM_NAME =
+    'National Science Olympiad 2026';
+
   const FORM_LINK =
     'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
 
   const EXAM_DURATION = 0.5 * 60;
 
+  // =========================
+
+  const [started, setStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
   const [examEnded, setExamEnded] = useState(false);
   const [alreadyAttempted, setAlreadyAttempted] = useState(false);
 
+  const examKey = `nsc_exam_attempt_${FORM_LINK}`;
+
   useEffect(() => {
 
-    if (!FORM_LINK) return;
+    if (!started) return;
 
-    // Unique exam key based on exam link
-    const examKey = `nsc_exam_attempt_${FORM_LINK}`;
+    if (!FORM_LINK) return;
 
     const today = new Date().toDateString();
 
@@ -33,10 +44,8 @@ export default function ExamPage() {
     // ANTI CHEAT SYSTEM
     // =========================
 
-    // Auto fullscreen
     document.documentElement.requestFullscreen?.();
 
-    // Detect tab switching
     const handleVisibility = () => {
 
       if (document.hidden) {
@@ -55,7 +64,6 @@ export default function ExamPage() {
       handleVisibility
     );
 
-    // Disable right click
     const disableRightClick = (e: MouseEvent) => {
       e.preventDefault();
     };
@@ -65,15 +73,12 @@ export default function ExamPage() {
       disableRightClick
     );
 
-    // Disable shortcuts
     const handleKeyDown = (e: KeyboardEvent) => {
 
-      // Prevent F12
       if (e.key === 'F12') {
         e.preventDefault();
       }
 
-      // Prevent Ctrl shortcuts
       if (
         e.ctrlKey &&
         ['c', 'v', 'x', 'u', 's', 'p'].includes(
@@ -83,7 +88,6 @@ export default function ExamPage() {
         e.preventDefault();
       }
 
-      // Prevent Alt+Tab partially
       if (e.altKey && e.key === 'Tab') {
         e.preventDefault();
       }
@@ -141,7 +145,7 @@ export default function ExamPage() {
       );
     };
 
-  }, [FORM_LINK]);
+  }, [started]);
 
   // =========================
   // NO LIVE EXAM
@@ -161,7 +165,6 @@ export default function ExamPage() {
 
           <p className="text-slate-400 text-lg">
             There is currently no live exam available.
-            Please check again later.
           </p>
 
         </div>
@@ -200,6 +203,58 @@ export default function ExamPage() {
     );
   }
 
+  // =========================
+  // EXAM START PAGE
+  // =========================
+
+  if (!started) {
+
+    return (
+      <main className="min-h-screen bg-[#05070A] text-white flex items-center justify-center px-4">
+
+        <div className="glass border border-sky-500/20 rounded-[2rem] p-12 max-w-3xl w-full text-center">
+
+          <p className="text-sky-500 uppercase tracking-[0.3em] text-sm font-bold mb-4">
+            Live Examination
+          </p>
+
+          <h1 className="font-display text-5xl md:text-6xl font-black mb-8">
+            {EXAM_NAME}
+          </h1>
+
+          <div className="space-y-4 text-slate-300 text-lg mb-10">
+
+            <p>
+              Duration: {EXAM_DURATION / 60} Minutes
+            </p>
+
+            <p>
+              Leaving the tab or suspicious activity will instantly terminate the exam.
+            </p>
+
+            <p>
+              Multiple attempts are not allowed.
+            </p>
+
+          </div>
+
+          <button
+            onClick={() => setStarted(true)}
+            className="px-12 py-5 bg-sky-500 hover:bg-sky-400 transition-all rounded-2xl text-slate-950 font-black uppercase tracking-widest text-sm"
+          >
+            Start Exam
+          </button>
+
+        </div>
+
+      </main>
+    );
+  }
+
+  // =========================
+  // LIVE EXAM
+  // =========================
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
@@ -210,7 +265,7 @@ export default function ExamPage() {
       <div className="sticky top-0 z-50 bg-slate-950 border-b border-slate-800 px-6 py-4 flex items-center justify-between">
 
         <h1 className="text-2xl font-black">
-          NSC ONLINE EXAM
+          {EXAM_NAME}
         </h1>
 
         <div className="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-xl font-bold text-lg">
@@ -222,7 +277,6 @@ export default function ExamPage() {
       {/* Exam Container */}
       <div className="relative w-full h-[calc(100vh-80px)]">
 
-        {/* Google Form */}
         <iframe
           src={FORM_LINK}
           className="w-full h-full"
