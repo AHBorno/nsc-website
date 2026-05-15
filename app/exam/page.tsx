@@ -113,7 +113,7 @@ export default function ExamPage() {
       setTimeLeft((prev) => {
 
         // Play warning sound at 10 sec
-        if (prev === 10) {
+        if (prev === 11) {
           warningAudio?.play();
         }
 
