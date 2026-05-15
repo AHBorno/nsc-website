@@ -9,12 +9,12 @@ export default function ExamPage() {
   // =========================
 
   const EXAM_NAME =
-    'National Science Olympiad 2026';
+    'National Science Fair and Co-Curricular Competition 2026 - Online GK Mastermind';
 
   const FORM_LINK =
-    '';
+    'https://docs.google.com/forms/d/e/1FAIpQLSdX0LrplTswafXSZAWDNzVJOIhtSwDLsThHBZBMTqpbW3FSjA/viewform?embedded=true';
 
-  const EXAM_DURATION = 0.5 * 60;
+  const EXAM_DURATION = 10 * 60;
 
   // =========================
 
