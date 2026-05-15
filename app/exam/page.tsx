@@ -12,7 +12,7 @@ export default function ExamPage() {
     'National Science Olympiad 2026';
 
   const FORM_LINK =
-    'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
+    '';
 
   const EXAM_DURATION = 0.5 * 60;
 
