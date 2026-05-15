@@ -12,7 +12,7 @@ export default function ExamPage() {
     'National Science Olympiad 2026';
 
   const FORM_LINK =
-    '';
+    'https://docs.google.com/forms/d/e/1FAIpQLSeC8qYQxCd_Hu0hZGcWMvVPr1d6Cu4mzb84IR3LmXPfzK5HnA/viewform?embedded=true';
 
   const EXAM_DURATION = 0.5 * 60;
 
@@ -22,6 +22,12 @@ export default function ExamPage() {
   const [timeLeft, setTimeLeft] = useState(EXAM_DURATION);
   const [examEnded, setExamEnded] = useState(false);
   const [alreadyAttempted, setAlreadyAttempted] = useState(false);
+
+  // Warning sound
+  const warningAudio =
+    typeof Audio !== 'undefined'
+      ? new Audio('/sounds/warning.mp3')
+      : null;
 
   const examKey = `nsc_exam_attempt_${FORM_LINK}`;
 
@@ -105,6 +111,11 @@ export default function ExamPage() {
     const timer = setInterval(() => {
 
       setTimeLeft((prev) => {
+
+        // Play warning sound at 10 sec
+        if (prev === 10) {
+          warningAudio?.play();
+        }
 
         if (prev <= 1) {
 
@@ -239,7 +250,15 @@ export default function ExamPage() {
           </div>
 
           <button
-            onClick={() => setStarted(true)}
+            onClick={() => {
+
+              localStorage.setItem(
+                'nsc_exam_start',
+                Date.now().toString()
+              );
+
+              setStarted(true);
+            }}
             className="px-12 py-5 bg-sky-500 hover:bg-sky-400 transition-all rounded-2xl text-slate-950 font-black uppercase tracking-widest text-sm"
           >
             Start Exam
@@ -268,7 +287,13 @@ export default function ExamPage() {
           {EXAM_NAME}
         </h1>
 
-        <div className="bg-red-500/20 border border-red-500 text-red-400 px-6 py-2 rounded-xl font-bold text-lg">
+        <div
+          className={`px-6 py-2 rounded-xl font-bold text-lg border transition-all ${
+            timeLeft <= 10
+              ? 'bg-red-500 text-white border-red-500 animate-pulse'
+              : 'bg-red-500/20 border-red-500 text-red-400'
+          }`}
+        >
           {minutes}:{seconds.toString().padStart(2, '0')}
         </div>
 
