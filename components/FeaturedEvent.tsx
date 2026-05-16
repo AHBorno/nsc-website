@@ -160,22 +160,40 @@ export default function FeaturedEvent() {
 
           <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 shadow-2xl">
 
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0.7, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7 }}
-              className="relative aspect-[21/9]"
+          <div className="relative aspect-[21/9] overflow-hidden">
+
+           <motion.div
+                    className="flex h-full"
+                    animate={{
+                    x: `-${currentSlide * 100}%`,
+                    }}
+                transition={{
+                     duration: 0.8,
+                      ease: 'easeInOut',
+                    }}
             >
 
-              <Image
-                src={galleryImages[currentSlide]}
-                alt="Event Gallery"
+                {galleryImages.map((image, index) => (
+
+            <div
+                key={index}
+                className="relative min-w-full h-full"
+            >
+
+            <Image
+                src={image}
+                alt={`Gallery ${index + 1}`}
                 fill
                 className="object-cover"
-              />
+            />
 
-            </motion.div>
+            </div>
+
+                 ))}
+
+           </motion.div>
+
+          </div>
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
