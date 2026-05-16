@@ -121,20 +121,7 @@ export default function FeaturedEvent() {
 
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-
-                <motion.a
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  href="https://forms.gle/owZk6ZCsojQC2cid9"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-5 bg-sky-500 text-slate-950 font-black rounded-2xl transition-all text-sm uppercase tracking-widest text-center"
-                >
-
-                  Register Now
-
-                </motion.a>
+              <div className="flex">
 
                 <a
                   href="/events"
@@ -160,13 +147,13 @@ export default function FeaturedEvent() {
 
             <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white">
 
-              EVENT
-              <span className="text-gradient"> GALLERY</span>
+              SHOTS
+              <span className="text-gradient"> OF THE DAY</span>
 
             </h2>
 
             <p className="text-slate-400 mt-4 text-lg">
-              Highlights from our previous science festivals and competitions.
+              Highlights from National Science Fair & Co-curricular Competetion.
             </p>
 
           </div>
