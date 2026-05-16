@@ -5,6 +5,11 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const images = [
+  '/gallery/event5.jpg',
+  '/gallery/event6.jpg',
+  '/gallery/event7.jpg',
+  '/gallery/event8.jpg',
+  '/gallery/event9.jpg',
   '/gallery/event4.jpg',
   '/gallery/event3.jpg',
   '/gallery/event2.jpg',
