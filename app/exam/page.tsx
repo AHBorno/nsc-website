@@ -12,7 +12,7 @@ export default function ExamPage() {
     'National Science Fair and Co-Curricular Competition 2026 - Online GK Mastermind';
 
   const FORM_LINK =
-    'https://docs.google.com/forms/d/e/1FAIpQLSdX0LrplTswafXSZAWDNzVJOIhtSwDLsThHBZBMTqpbW3FSjA/viewform?embedded=true';
+    '';
 
   const EXAM_DURATION = 10 * 60;
 

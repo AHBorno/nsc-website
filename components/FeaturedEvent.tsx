@@ -1,121 +1,151 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { Calendar, MapPin, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function FeaturedEvent() {
+
+  const galleryImages = [
+    '/gallery/event5.jpg',
+    '/gallery/event6.jpg',
+    '/gallery/event7.jpg',
+    '/gallery/event8.jpg',
+    '/gallery/event9.jpg',
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+
+      setCurrentSlide((prev) =>
+        prev === galleryImages.length - 1 ? 0 : prev + 1
+      );
+
+    }, 3500);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
   return (
 
-    <a href="/events" className="block">
+    <section className="py-24 bg-slate-950/50" id="events">
 
-      <section className="py-24 bg-slate-950/50" id="events">
+      <div className="max-w-7xl mx-auto px-4">
 
-        <div className="max-w-7xl mx-auto px-4">
+        {/* Heading */}
+        <div className="mb-12">
 
-          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-4xl">
 
-            <div className="max-w-2xl">
+            <h2 className="font-mono text-sm tracking-tighter text-sky-500 font-bold mb-2 uppercase">
+              Upcoming Event
+            </h2>
 
-              <h2 className="font-mono text-sm tracking-tighter text-sky-500 font-bold mb-2 uppercase">
-                Upcoming Event
-              </h2>
-
-              <h3 className="font-display text-4xl md:text-6xl font-black tracking-tight text-white leading-tight">
-                National Science Fair & Co-curricular Competition-2026
-              </h3>
-
-            </div>
+            <h3 className="font-display text-4xl md:text-6xl font-black tracking-tight text-white leading-tight">
+              National Science Fair & Co-curricular Competition-2026
+            </h3>
 
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        </div>
 
-            <div className="lg:col-span-12 relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm shadow-2xl">
+        {/* Main Event Section */}
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch mb-20">
 
-              <div className="relative aspect-[21/9] w-full">
+          {/* Event Banner */}
+          <a
+            href="/events"
+            className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/40 backdrop-blur-sm shadow-2xl group"
+          >
 
-                <Image 
-                  src="/science-carnival-2026.png" 
-                  alt="7th Inter School and College Science Carnival 2026 Banner"
-                  fill
-                  className="object-cover"
-                  referrerPolicy="no-referrer"
-                />
+            <div className="relative aspect-[16/10] w-full">
 
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60" />
+              <Image
+                src="/science-carnival-2026.png"
+                alt="National Science Fair Banner"
+                fill
+                className="object-cover group-hover:scale-105 transition-all duration-700"
+                referrerPolicy="no-referrer"
+              />
 
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-70" />
 
             </div>
 
-            <div className="lg:col-span-7 relative group cursor-pointer overflow-hidden rounded-3xl">
+          </a>
 
-              <div className="h-full bg-slate-900/40 border border-slate-800 p-8 md:p-12 backdrop-blur-sm group-hover:border-sky-500/30 transition-all shadow-2xl">
+          {/* Event Details */}
+          <div className="relative overflow-hidden rounded-3xl">
 
-                <div className="flex flex-wrap gap-8 text-slate-400 mb-8">
+            <div className="h-full bg-slate-900/40 border border-slate-800 p-8 md:p-12 backdrop-blur-sm hover:border-sky-500/30 transition-all shadow-2xl flex flex-col justify-center">
 
-                  <div className="flex items-center gap-2">
+              <div className="flex flex-wrap gap-8 text-slate-400 mb-8">
 
-                    <Calendar className="text-sky-500 w-5 h-5" />
+                <div className="flex items-center gap-2">
 
-                    <span className="font-mono text-sm">
-                      May 16-17, 2026
-                    </span>
+                  <Calendar className="text-sky-500 w-5 h-5" />
 
-                  </div>
-
-                  <a
-                    href="https://maps.app.goo.gl/gMsodLn29fXDbhoV7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex items-center gap-2 hover:text-sky-400 transition-colors"
-                  >
-
-                    <MapPin className="w-4 h-4 text-sky-500" />
-
-                    <span className="font-mono text-sm">
-                      Noubahini College Dhaka
-                    </span>
-
-                  </a>
+                  <span className="font-mono text-sm">
+                    May 16-17, 2026
+                  </span>
 
                 </div>
 
-                <p className="text-lg text-slate-400 leading-relaxed mb-0">
-                  Join the grandest celebration of science and technology in the region.
-                  Competitions, workshops, and much more. Experience two days of pure
-                  scientific madness.
-                </p>
+                <a
+                  href="https://maps.app.goo.gl/gMsodLn29fXDbhoV7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-sky-400 transition-colors"
+                >
+
+                  <MapPin className="w-4 h-4 text-sky-500" />
+
+                  <span className="font-mono text-sm">
+                    Noubahini College Dhaka
+                  </span>
+
+                </a>
 
               </div>
 
-            </div>
-            
-            <div className="lg:col-span-5 bg-sky-500 rounded-3xl p-10 flex flex-col justify-center text-slate-950 items-center text-center shadow-lg shadow-sky-500/25">
+              <p className="text-lg text-slate-400 leading-relaxed mb-10">
 
-              <h4 className="text-[10px] uppercase tracking-[0.3em] font-black mb-4">
-                Take Part Today
-              </h4>
+                Join the grandest celebration of science and technology in the region.
+                Competitions, workshops, project displays, olympiads, and much more.
+                Experience two days of pure scientific madness.
 
-              <p className="text-2xl font-black mb-8 leading-tight">
-                Ready to showcase your talent?
               </p>
 
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://forms.gle/owZk6ZCsojQC2cid9"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="w-full py-5 bg-slate-950 text-white font-bold rounded-xl group transition-all text-sm uppercase tracking-widest"
-              >
+              <div className="flex flex-col sm:flex-row gap-4">
 
-                Register Now
+                <motion.a
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  href="https://forms.gle/owZk6ZCsojQC2cid9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-5 bg-sky-500 text-slate-950 font-black rounded-2xl transition-all text-sm uppercase tracking-widest text-center"
+                >
 
-              </motion.a>
+                  Register Now
+
+                </motion.a>
+
+                <a
+                  href="/events"
+                  className="px-8 py-5 border border-slate-700 hover:border-sky-500/40 text-white rounded-2xl transition-all text-sm uppercase tracking-widest font-bold text-center"
+                >
+
+                  Explore Event
+
+                </a>
+
+              </div>
 
             </div>
 
@@ -123,8 +153,71 @@ export default function FeaturedEvent() {
 
         </div>
 
-      </section>
+        {/* Event Gallery */}
+        <div>
 
-    </a>
+          <div className="mb-10">
+
+            <h2 className="font-display text-4xl md:text-5xl font-black tracking-tight text-white">
+
+              EVENT
+              <span className="text-gradient"> GALLERY</span>
+
+            </h2>
+
+            <p className="text-slate-400 mt-4 text-lg">
+              Highlights from our previous science festivals and competitions.
+            </p>
+
+          </div>
+
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 shadow-2xl">
+
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0.7, scale: 1.03 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              className="relative aspect-[21/9]"
+            >
+
+              <Image
+                src={galleryImages[currentSlide]}
+                alt="Event Gallery"
+                fill
+                className="object-cover"
+              />
+
+            </motion.div>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+            {/* Dots */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+
+              {galleryImages.map((_, index) => (
+
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === index
+                      ? 'bg-sky-500 w-10'
+                      : 'bg-white/40 w-3'
+                  }`}
+                />
+
+              ))}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
   );
 }
