@@ -8,6 +8,11 @@ import { useEffect, useState } from 'react';
 export default function FeaturedEvent() {
 
   const galleryImages = [
+     '/gallery/event14.jpg',
+    '/gallery/event13.jpg',
+    '/gallery/event12.jpg',
+    '/gallery/event11.jpg',
+    '/gallery/event10.jpg',
     '/gallery/event5.jpg',
     '/gallery/event6.jpg',
     '/gallery/event7.jpg',
