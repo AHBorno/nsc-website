@@ -48,7 +48,7 @@ export default function FeaturedEvent() {
           <div className="max-w-4xl">
 
             <h2 className="font-mono text-sm tracking-tighter text-sky-500 font-bold mb-2 uppercase">
-              Upcoming Event
+              Recent Event
             </h2>
 
             <h3 className="font-display text-4xl md:text-6xl font-black tracking-tight text-white leading-tight">
