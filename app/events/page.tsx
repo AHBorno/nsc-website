@@ -9,6 +9,7 @@ const pastEvents = [
   { name: '6th Science Carnival 2024', date: 'August 2024', role: 'Hosted' },
   { name: 'National Olympiad Prep', date: 'May 2024', role: 'Workshop' },
   { name: 'Robotics Workshop 1.0', date: 'January 2024', role: 'Skills' },
+  { name: 'Intra Navians' Science Fest', date: 'September 2022', role: 'Hosted' },
 ];
 
 export default function EventsPage() {
@@ -29,7 +30,7 @@ export default function EventsPage() {
         <div className="max-w-7xl mx-auto px-4">
 
           <h2 className="font-display text-4xl font-black mb-12">
-            Session Archive
+            Events Archive
           </h2>
 
           <div className="grid gap-4">
