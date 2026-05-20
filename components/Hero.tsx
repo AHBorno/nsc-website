@@ -19,31 +19,6 @@ export default function Hero() {
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-600/20 rounded-full blur-[120px] -z-10 animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] -z-10 animate-pulse delay-1000" />
 
-      {/* Live Event Popup */}
-      <a
-        href="/events"
-        className="absolute top-20 right-3 md:right-8 z-20 scale-75 md:scale-100 origin-top-right"
-      >
-        <div className="glass border border-sky-500/20 rounded-[2rem] px-6 py-5 hover:border-sky-500/50 transition-all duration-300 hover:scale-105 cursor-pointer max-w-xs backdrop-blur-xl">
-
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-
-            <p className="text-white font-semibold text-lg italic">
-              Live event
-            </p>
-          </div>
-
-          <p className="text-slate-400 text-sm mb-2">
-            16-17 May, 2026
-          </p>
-
-          <h3 className="text-sky-400 font-semibold text-lg leading-snug">
-            National Science Fair & Co-curricular Competition-2026
-          </h3>
-        </div>
-      </a>
-
       <div className="max-w-7xl mx-auto px-4 text-center">
 
         <motion.div
@@ -52,7 +27,6 @@ export default function Hero() {
           transition={{ duration: 1, ease: 'easeOut' }}
           className="mb-8 relative inline-block"
         >
-          {/* Using a placeholder for logo since generation failed, but keeping it styled */}
           <div className="w-32 h-32 md:w-48 md:h-48 rounded-full relative p-1 shadow-2xl shadow-sky-500/20 overflow-hidden bg-[#0A0D14] border-2 border-yellow-500/30">
             <div className="absolute inset-0 bg-gradient-to-tr from-yellow-500/10 to-transparent pointer-events-none" />
 

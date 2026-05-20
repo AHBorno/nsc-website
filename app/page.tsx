@@ -84,20 +84,12 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-
-              <a 
-                href="https://forms.gle/owZk6ZCsojQC2cid9" 
-                target="_blank" 
-                className="px-10 py-5 bg-slate-950 text-white rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-slate-900 transition-all shadow-2xl flex-1 text-center"
-              >
-                Sign Up Now
-              </a>
+            <div className="flex justify-center md:justify-end">
 
               <a 
                 href="https://www.facebook.com/nsc.ncd" 
                 target="_blank" 
-                className="px-10 py-5 bg-transparent border-2 border-slate-950 text-slate-950 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-slate-950 hover:text-white transition-all flex-1 text-center"
+                className="px-10 py-5 bg-transparent border-2 border-slate-950 text-slate-950 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-slate-950 hover:text-white transition-all text-center"
               >
                 Follow Status
               </a>
