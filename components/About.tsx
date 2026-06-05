@@ -16,7 +16,7 @@ const values = [
   },
   {
     title: 'Why NSC?',
-    description: "We believe science isn&apos;t just in books; it&apos;s in the way we think and solve problems.",
+    description: "We believe science isn’t just in books; it’s in the way we think and solve problems.",
     icon: Zap,
   },
 ];
