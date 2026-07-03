@@ -55,7 +55,7 @@ export default function FeaturedEvent() {
             </h2>
 
             <h3 className="font-display text-4xl md:text-6xl font-black tracking-tight text-white leading-tight">
-              National Science Fair & Co-curricular Competition-2026
+              Startup, Science Project and Innovation Idea Showcasing Program
             </h3>
 
           </div>
@@ -130,7 +130,7 @@ export default function FeaturedEvent() {
               <div className="flex">
 
                 <a
-                  href="/events"
+                  href="https://www.facebook.com/reel/1298159092400109"
                   className="px-8 py-5 border border-slate-700 hover:border-sky-500/40 text-white rounded-2xl transition-all text-sm uppercase tracking-widest font-bold text-center"
                 >
 
@@ -159,7 +159,7 @@ export default function FeaturedEvent() {
             </h2>
 
             <p className="text-slate-400 mt-4 text-lg">
-              Highlights from National Science Fair & Co-curricular Competetion.
+              Highlights from our past events.
             </p>
 
           </div>
