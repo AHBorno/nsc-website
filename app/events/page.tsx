@@ -5,6 +5,7 @@ import FeaturedEvent from '@/components/FeaturedEvent';
 import EventsGallery from '@/components/EventsGallery';
 
 const pastEvents = [
+  { name: 'Startup, Science Project and Innovation Idea Showcasing Program 2026', date: 'June 2026', role: 'Hosted' },
   { name: 'National Science Fair & Co-curricular Competetion', date: 'May 2026', role: 'Hosted' },
   { name: '6th Science Carnival 2024', date: 'August 2024', role: 'Hosted' },
   { name: 'National Olympiad Prep', date: 'May 2024', role: 'Workshop' },

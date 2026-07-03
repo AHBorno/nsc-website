@@ -8,7 +8,10 @@ import { useEffect, useState } from 'react';
 export default function FeaturedEvent() {
 
   const galleryImages = [
-     '/gallery/event14.jpg',
+    '/gallery/event17.jpg',
+    '/gallery/event16.jpg',
+    '/gallery/event15.jpg',
+    '/gallery/event14.jpg',
     '/gallery/event13.jpg',
     '/gallery/event12.jpg',
     '/gallery/event11.jpg',
@@ -71,8 +74,8 @@ export default function FeaturedEvent() {
             <div className="relative aspect-[16/10] w-full">
 
               <Image
-                src="/science-carnival-2026.png"
-                alt="National Science Fair Banner"
+                src="/startup-showcase-2025.jpg"
+                alt="rtup, Science Project and Innovation Idea Showcasing Program"
                 fill
                 className="object-cover group-hover:scale-105 transition-all duration-700"
                 referrerPolicy="no-referrer"
@@ -120,9 +123,7 @@ export default function FeaturedEvent() {
 
               <p className="text-lg text-slate-400 leading-relaxed mb-10">
 
-                Join the grandest celebration of science and technology in the region.
-                Competitions, workshops, project displays, olympiads, and much more.
-                Experience two days of pure scientific madness.
+                Noubahini College Dhaka proudly hosted the Startup, Science Project and Innovation Idea Showcasing Program at the thana level. Navians' Science Club actively supported the event, welcoming innovators, young researchers, and science enthusiasts to showcase their ideas and projects.
 
               </p>
 
@@ -133,7 +134,7 @@ export default function FeaturedEvent() {
                   className="px-8 py-5 border border-slate-700 hover:border-sky-500/40 text-white rounded-2xl transition-all text-sm uppercase tracking-widest font-bold text-center"
                 >
 
-                  Explore Event
+                  VIEW HIGHLIGHTS
 
                 </a>
 
