@@ -9,7 +9,7 @@ export default function FloatingFacebook() {
 
       {/* Instagram */}
       <motion.a
-        href="https://www.instagram.com/we_are_navians?utm_source=qr&igsh=MXJhdGdlcXViYm9uaw=="
+        href="https://www.instagram.com/ncd.nsc/?hl=en"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ opacity: 0, y: 40 }}
